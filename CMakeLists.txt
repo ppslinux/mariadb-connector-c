@@ -24,7 +24,7 @@ ENDIF()
 ### Options ###
 IF(NOT WIN32)
   OPTION(WITH_MYSQLCOMPAT "creates libmysql* symbolic links" ON)
-  OPTION(WITH_OPENSSL "enables SSL support" ON)
+  OPTION(WITH_OPENSSL "enables SSL support" OFF)
 ELSE()
   OPTION(WITH_OPENSSL "enables SSL support" OFF)
   OPTION(WITH_SIGNCODE "digitally sign files" OFF)
