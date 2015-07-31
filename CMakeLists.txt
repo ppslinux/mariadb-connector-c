@@ -1,4 +1,7 @@
 # CMakeLists.txt
+SET(CMAKE_SYSTEM_NAME Linux)
+SET(CMAKE_C_COMPILER "arm-hisiv100nptl-linux-gcc")
+SET(CMAKE_CXX_COMPILER "arm-hisiv100nptl-linux-g++")
 
 # This is the LGPL libmariadb project.
 PROJECT(mariadb-connector-c C)

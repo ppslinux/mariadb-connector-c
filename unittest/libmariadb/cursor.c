@@ -1800,7 +1800,28 @@ static int test_bug9643(MYSQL *mysql)
 }
 
 
+
+static int insert_recoder(MYSQL *mysql)
+{
+  	int rc;
+	int i= 0;
+	char cmd[256];
+	memset(cmd,0,256);
+
+	for( i=0 ;i<100;i++)
+	{
+		snprintf(cmd,256, "insert into runwell_table(ID,runwell1,runwell2) VALUES(%d,'abcd','def')",i);
+		printf("cmd :%s\r\n",cmd);
+		rc = mysql_query(mysql, cmd);
+		check_mysql_rc(rc,mysql);
+		memset(cmd,0,256);
+	}
+
+}
+
+
 struct my_tests_st my_tests[] = {
+#if 0
   {"test_basic_cursors", test_basic_cursors, TEST_CONNECTION_DEFAULT, 0, NULL , NULL},
   {"test_cursors_with_union", test_cursors_with_union, TEST_CONNECTION_DEFAULT, 0, NULL , NULL},
   {"test_cursors_with_procedure", test_cursors_with_procedure, TEST_CONNECTION_DEFAULT, 0, NULL , NULL},
@@ -1827,7 +1848,10 @@ struct my_tests_st my_tests[] = {
   {"test_bug9478", test_bug9478, TEST_CONNECTION_DEFAULT, 0, NULL , NULL},
   {"test_bug9520", test_bug9520, TEST_CONNECTION_DEFAULT, 0, NULL , NULL},
   {"test_bug9643", test_bug9643, TEST_CONNECTION_DEFAULT, 0, NULL , NULL},
+#endif
+  {"insert", insert_recoder, TEST_CONNECTION_DEFAULT, 0, NULL , NULL},
   {NULL, NULL, 0, 0, NULL, NULL}
+
 };
 
 int main(int argc, char **argv)
