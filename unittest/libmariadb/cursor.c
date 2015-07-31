@@ -23,6 +23,25 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 #include "my_test.h"
 
+#include <time.h>
+unsigned long GetTickCount()
+{
+	static signed long long begin_time = 0;
+	static signed long long now_time;
+	struct timespec tp;
+	unsigned long tmsec = 0;
+	if ( clock_gettime(CLOCK_MONOTONIC, &tp) != -1 )
+	{
+		now_time = tp.tv_sec * 1000 + tp.tv_nsec / 1000000;
+	}
+	if ( begin_time = 0 )
+		begin_time = now_time;
+	tmsec = (unsigned long)(now_time - begin_time);
+	return tmsec;
+}
+
+
+
 /* helper functions */
 enum { MAX_COLUMN_LENGTH= 255 };
 
@@ -1856,12 +1875,18 @@ struct my_tests_st my_tests[] = {
 
 int main(int argc, char **argv)
 {
-  if (argc > 1)
-    get_options(argc, argv);
-
-  get_envvars();
-
-  run_tests(my_tests);
-
-  return(exit_status());
+  	if (argc > 1)
+    	get_options(argc, argv);
+  	get_envvars();
+	unsigned long lasttick;
+	
+	lasttick = GetTickCount();
+  	run_tests(my_tests);
+	char cmd[128];
+	snprintf(cmd,128,
+			"Run for time %dms\n",
+			(GetTickCount() - lasttick)
+			);
+	printf("%s",cmd);	
+  	return(exit_status());
 }

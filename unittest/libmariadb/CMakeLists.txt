@@ -22,7 +22,7 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include
 ADD_DEFINITIONS(-DLIBMARIADB)
 
 SET(API_TESTS "async" "basic-t" "fetch" "charset" "logs" "cursor" "errors" "view" "ps" "ps_bugs" 
-              "sp" "result" "connection" "misc" "ps_new" "sqlite3" "thread" "dyncol") 
+              "sp" "result" "connection" "misc" "ps_new" "sqlite3" "thread" "dyncol" "mycrack") 
 
 # Get finger print from server certificate 
 IF(WITH_OPENSSL)
