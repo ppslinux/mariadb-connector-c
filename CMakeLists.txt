@@ -1,8 +1,4 @@
 # CMakeLists.txt
-SET(CMAKE_SYSTEM_NAME Linux)
-SET(CMAKE_C_COMPILER "arm-hisiv100nptl-linux-gcc")
-SET(CMAKE_CXX_COMPILER "arm-hisiv100nptl-linux-g++")
-
 # This is the LGPL libmariadb project.
 PROJECT(mariadb-connector-c C)
 
@@ -93,10 +89,10 @@ IF(NOT MYSQL_UNIX_ADDR)
   SET(MYSQL_UNIX_ADDR "/tmp/mysql.sock")
 ENDIF()
 
-FIND_PACKAGE(CURL)
-IF(CURL_FOUND)
-  ADD_DEFINITIONS(-DHAVE_CURL=1)
-ENDIF()
+#FIND_PACKAGE(CURL)
+#IF(CURL_FOUND)
+#  ADD_DEFINITIONS(-DHAVE_CURL=1)
+#ENDIF()
 
 INCLUDE("${CMAKE_SOURCE_DIR}/cmake/install.cmake")
 

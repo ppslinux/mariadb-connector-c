@@ -163,9 +163,11 @@ int ma_feof(MA_FILE *file)
   case MA_FILE_LOCAL:
     return feof((FILE *)file->ptr);
     break;
+#if 0
   case MA_FILE_REMOTE:
     return rio_plugin->methods->feof(file);
     break;
+#endif
   default:
     return -1;
   }
